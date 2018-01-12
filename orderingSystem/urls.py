@@ -19,6 +19,7 @@ from orders import views as order_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('client/', order_views.show_articles()),
-    path('employee/', order_views.),
+    path('client/', order_views.show_articles),
+    path('hello/', order_views.hello),
+    path('hello_template/', order_views.hello_template)
 ]
