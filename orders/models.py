@@ -43,4 +43,4 @@ class Order(models.Model):
     isAssigned = models.BooleanField(default=False,blank=False)
     assignee = models.ForeignKey(Person, blank=True, on_delete=models.PROTECT)
     status = EnumField(STATUS, default=STATUS.DURING_COMPLETION, blank=False)
-    paymentMethod = EnumField(STATUS, default=PAYMENT.CASH, blank=False)
+    paymentMethod = EnumField(STATUS, default=STATUS.DURING_COMPLETION, blank=False)
