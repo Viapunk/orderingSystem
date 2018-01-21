@@ -1,3 +1,5 @@
+<html>
+
 {# Load the tag library #}
 {% load bootstrap3 %}
 
@@ -7,7 +9,24 @@
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
-<form>
-    <input type="text" name="firstname">
-{# Display a form #}
+{% load index %}
+
+<form method="POST" action="confirmation.html">
+    {% csrf_token %}
+<table>
+        {% for field in some_form %}
+            <tr>
+                <td><b><img src={{ field.label }} width="150" height="150"></b></td>
+                <td>{{ field }}</td>
+            </tr>
+        {% endfor %}
+</table>
 </form>
+
+<table>
+{% for o in some_list %}
+    <tr>{% bootstrap_label o.name %}</tr>
+{% endfor %}
+</table>
+
+</html>
