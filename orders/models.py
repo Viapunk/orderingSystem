@@ -35,7 +35,6 @@ class Product_category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=70, blank=False)
-    quantity = models.IntegerField(blank=False)
     image = models.ImageField(upload_to='media', default="")
     category = models.ForeignKey(Product_category, on_delete=models.CASCADE)
 
@@ -46,13 +45,12 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
 class Order(models.Model):
     productList = models.ForeignKey(Product, on_delete=models.PROTECT)
     isAssigned = models.BooleanField(default=False,blank=False)
     assignee = models.ForeignKey(Person, blank=True, on_delete=models.PROTECT)
     status = EnumField(STATUS, default=STATUS.COMPLETING, blank=False)
-    paymentMethod = EnumField(PAYMENT, default="Cash", blank=False, max_length=10)
+    #paymentMethod = EnumField(PAYMENT, default="Cash", blank=False, max_length=10)
 
     def __str__(self):
         return self.id + " " + self.status

@@ -6,4 +6,4 @@ class orderingForm(forms.Form):
         items = kwargs.pop('items')
         super(orderingForm, self).__init__(*args, **kwargs)
         for item in items:
-            self.fields[item.name] = forms.IntegerField(label=item.image.url)
+            self.fields[item.name] = forms.IntegerField(label=item.image.url, required=False)
