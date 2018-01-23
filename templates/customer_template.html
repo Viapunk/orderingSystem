@@ -11,15 +11,24 @@
 {% bootstrap_messages %}
 {% load index %}
 
-<form method="POST" action="confirmation.html">
-    {% csrf_token %}
-<table>
-        {% for field in some_form %}
-            <tr>
-                <td><b><img src={{ field.label }} width="150" height="150"></b></td>
-                <td>{{ field }}</td>
-            </tr>
-        {% endfor %}
+<form method="POST" action="confirmation.html"> {% csrf_token %}
+    <table>
+        <tr>
+        <td>
+            {% for field in some_form %}
+                <td>
+                <b><img src={{ field.label }} width="150" height="150"></b><br>
+                {{ field }}
+                {% if forloop.counter|divisibleby:"3" %}
+                </td>
+                    <tr>
+                    <td>
+                {% endif %}
+            </td>
+
+            {% endfor %}
+            </td>
+        </tr>
 </table>
 </form>
 

@@ -81,11 +81,10 @@ WSGI_APPLICATION = 'orderingSystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydb',
         'USER': 'django',
-        'PASSWORD': 'djangoadmin'
-    }
+        'PASSWORD': 'djangoadmin'}
 }
 
 
