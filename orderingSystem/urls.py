@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', order_views.welcome_page),
     path('admin/', admin.site.urls),
     path('client/', order_views.show_articles),
     path('send_order', order_views.send_order),
