@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'orders',
     'bootstrap3',
+    'django_mysql',
 ]
 
 MIDDLEWARE = [
