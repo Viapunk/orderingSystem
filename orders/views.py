@@ -16,3 +16,6 @@ def show_articles(request):
 
 def order_confirmation(request):
     return HttpResponse(status=200)
+
+def welcome_page(request):
+    return render(request, 'hello.html')
