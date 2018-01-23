@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .forms import orderingForm
 from .models import *
 
@@ -20,5 +21,13 @@ def show_articles(request):
             productNames.append(item.name)
         return render(request, 'customer_template.html', {'some_form': form, 'imagesList': images, 'productnames': productNames})
 
+    return render(request, 'customer_template.html', {'some_form': form, 'imagesList': images})
+
+def order_confirmation(request):
+    return HttpResponse(status=200)
+
+def welcome_page(request):
+    return render(request, 'hello.html')
+
 def send_order(request):
-    return HttpRequest
+    return HttpResponse(status=200)
