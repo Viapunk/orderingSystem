@@ -1,22 +1,26 @@
 from django.db import models
 from enumfields import EnumField
 from enumfields import Enum
-
+from django_mysql.models import JSONField
 # Create your models here.
+
 
 class PRIVILEDGE(Enum):
     CLIENT = 'Client',
     EMPLOYEE = 'Employee',
     ADMIN = 'Admin'
 
+
 class STATUS(Enum):
     COMPLETING = 'Completing',
     READY = 'Ready',
     COLLECTED = 'Collected'
 
+
 class PAYMENT(Enum):
     CARD = 'Card',
     CASH = 'Cash'
+
 
 class Person(models.Model):
     firstName = models.CharField(max_length=30)
@@ -26,6 +30,7 @@ class Person(models.Model):
     def __str__(self):
         return self.firstName + " " + self.lastName;
 
+
 class Product_category(models.Model):
     name = models.CharField(max_length=70, blank=False, default="Product")
     image = models.ImageField(upload_to='media', default="")
@@ -33,9 +38,11 @@ class Product_category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     name = models.CharField(max_length=70, blank=False)
     image = models.ImageField(upload_to='media', default="")
+    price = models.IntegerField(default="10")
     category = models.ForeignKey(Product_category, on_delete=models.CASCADE)
 
     def get_all_objects(self):
@@ -45,12 +52,12 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Order(models.Model):
-    productList = models.ForeignKey(Product, on_delete=models.PROTECT)
+    productList = JSONField(default="")
     isAssigned = models.BooleanField(default=False,blank=False)
     assignee = models.ForeignKey(Person, blank=True, on_delete=models.PROTECT)
     status = EnumField(STATUS, default=STATUS.COMPLETING, blank=False)
-    #paymentMethod = EnumField(PAYMENT, default="Cash", blank=False, max_length=10)
 
     def __str__(self):
         return self.id + " " + self.status
