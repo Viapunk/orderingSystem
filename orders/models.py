@@ -1,7 +1,7 @@
 from django.db import models
 from enumfields import EnumField
 from enumfields import Enum
-from django_mysql.models import JSONField
+from jsonfield import JSONField
 # Create your models here.
 
 
