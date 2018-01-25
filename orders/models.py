@@ -54,10 +54,10 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    productList = JSONField(default="")
-    isAssigned = models.BooleanField(default=False,blank=False)
-    assignee = models.ForeignKey(Person, blank=True, on_delete=models.PROTECT)
-    status = EnumField(STATUS, default=STATUS.COMPLETING, blank=False)
+    productList = JSONField()
+    isAssigned = models.BooleanField(blank=True, default=True)
+    #assignee = models.OneToOneField(Person, on_delete=models.CASCADE)
+    #status = EnumField(STATUS, default="completing", blank=False)
 
     def __str__(self):
         return self.id + " " + self.status
