@@ -1,5 +1,12 @@
 <html>
 <body>
-{% for  %}
+{% for order in orders_list %}
+
+    {% for product in order.productList %}
+        {{ product }}
+
+    {% endfor %}
+
+{% endfor %}
 </body>
 </html>

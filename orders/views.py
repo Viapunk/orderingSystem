@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from .forms import orderingForm
 from .models import *
 
 
 def show_articles(request):
     if request.method == 'POST':
-        if request.session.get('items', None):
+        if request.session['items']:
             orderedProductList = dict()
             for value in request.POST:
                 if request.POST[value].isdigit() and request.POST[value] != '':
@@ -14,11 +14,10 @@ def show_articles(request):
             request.session['items'] = orderedProductList
             return render(request, 'confirmation.html', {"ordered_products": orderedProductList})
         else:
-            o = Order.objects.create(productList=request.session.get('items'))
-            o.save()
-            request.sessios.flush()
-            return redirect('orders_display')
-
+            #o = Order.objects.create(productList=request.session['items'])
+            #o.save()
+            #request.session.flush()
+            return redirect('orders/', {'session_data':request.session.get('items')})
     else:
         p = Product.objects.all()
         form = orderingForm(items=Product.objects.all())
@@ -32,7 +31,7 @@ def show_articles(request):
 
 def orders_display(request):
     orders_list = Order.objects.all()
-    return render(request, {'orders_list': orders_list})
+    return render(request,'ordersDisplayPanel.html', {'orders_list': orders_list})
 
 
 def welcome_page(request):
