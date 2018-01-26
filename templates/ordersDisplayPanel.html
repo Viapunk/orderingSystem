@@ -2,7 +2,7 @@
 <body>
 {% for order in orders_list %}
 
-    {{ order.id }}: {{ order.productList }}<br>
+    {{ order.id }}, STATUS: {{ order.status }}, PRODUCTS: {{ order.productList }}<br>
 
 
 {% endfor %}
