@@ -11,12 +11,6 @@ class PRIVILEDGE(Enum):
     ADMIN = 'Admin'
 
 
-class STATUS(Enum):
-    COMPLETING = 'Completing',
-    READY = 'Ready',
-    COLLECTED = 'Collected'
-
-
 class PAYMENT(Enum):
     CARD = 'Card',
     CASH = 'Cash'
@@ -54,10 +48,18 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    COMPLETING = 'Kompletowany'
+    READY = 'Gotowy'
+    COLLECTED = 'Odebrany'
+    STATE = (
+        (COMPLETING, "Completing"),
+        (READY, "Ready"),
+        (COLLECTED, "Collected"),
+    )
+
     productList = JSONField()
     isAssigned = models.BooleanField(blank=True, default=True)
-    #assignee = models.OneToOneField(Person, on_delete=models.CASCADE)
-    #status = EnumField(STATUS, default="completing", blank=False)
+    status = models.CharField(max_length=30, choices=STATE, default=COMPLETING)
 
     def __str__(self):
         return self.id + " " + self.status
