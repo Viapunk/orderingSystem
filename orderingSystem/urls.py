@@ -18,11 +18,11 @@ from django.urls import path
 from orders import views as order_views
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('', order_views.welcome_page),
     path('admin/', admin.site.urls),
     path('client/', order_views.show_articles),
-    path('client/orders/', order_views.orders_display),
+    path('orders/', order_views.orders_display),
+    path('client/orders/', order_views.orders_display_customers),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -36,8 +36,11 @@
                 </table>
                 <form action="." method="POST">
                     {% csrf_token %}
-                <button class="btn btn-success btn-lg" role="button" type="submit">
+                <button class="btn btn-success btn-lg" role="button" type="submit" name="Confirmation" value="Confirm">
                         Zamawiam
+                </button>
+                    <button class="btn btn-danger btn-lg" role="button" type="submit" name="Confirmation" value="Cancel">
+                        Nie zamawiam
                 </button>
                 </form>
 
