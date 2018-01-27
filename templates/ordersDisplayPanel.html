@@ -2,8 +2,24 @@
 <body>
 {% for order in orders_list %}
 
-    {{ order.id }}, STATUS: {{ order.status }}, PRODUCTS: {{ order.productList }}<br>
+    {% if order.status != 'Odebrany' %}
+        <form method="post" action="."> {% csrf_token %}
 
+            Numer zamówienia:{{ order.id }}<br>
+            STATUS: {{ order.status }}<br>
+            PRODUKTY:<br>
+            {% for product, count in order.productList.items %}
+                {{ product }}: {{ count }}<br>
+            {% endfor %}
+                    <input type="text" name="orderid" value={{ order.id }} hidden>
+                {% if order.status == "Kompletowany" %}
+                    <input type="submit" name="status" value="Skompletowany">
+                {% elif order.status == "Gotowy do odbioru" %}
+                    <input type="submit" name="status" value="Odebrany" >
+                {% endif %}
+
+        </form>
+    {% endif %}
 
 {% endfor %}
 </body>
