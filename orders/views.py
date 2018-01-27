@@ -12,7 +12,7 @@ def show_articles(request):
             for value in request.POST:
                 if request.POST[value].isdigit() and request.POST[value] != '':
                     orderedProductList[value] = request.POST[value]
-            request.session['items'] = json.dumps(orderedProductList)
+            request.session['items'] = orderedProductList
             return render(request, 'confirmation.html', {"ordered_products": orderedProductList})
         else:
             return redirect('orders/', )
@@ -28,6 +28,15 @@ def show_articles(request):
 
 
 def orders_display(request):
+    if request.method == "POST":
+        order_to_update = Order.objects.get(id = request.POST['orderid'])
+        if request.POST['status'] == 'Skompletowany':
+            order_to_update.status = Order.READY
+            order_to_update.save()
+        elif request.POST['status'] == 'Odebrany':
+            order_to_update.status = Order.COLLECTED
+            order_to_update.save()
+        print(order_to_update)
     if request.session.get('items') != None:
         o = Order.objects.create(productList=request.session['items'])
         o.save()
@@ -35,6 +44,10 @@ def orders_display(request):
     orders_list = Order.objects.all()
     return render(request,'ordersDisplayPanel.html', {'orders_list': orders_list})
 
+
+def orders_display_customers(request):
+    orders_list = Order.objects.all()
+    return render(request, 'ordersDisplayCustomer.html', {'orders_list': orders_list})
 
 def welcome_page(request):
     return render(request, 'hello.html')

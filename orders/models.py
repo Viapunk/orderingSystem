@@ -49,7 +49,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     COMPLETING = 'Kompletowany'
-    READY = 'Gotowy'
+    READY = 'Gotowy do odbioru'
     COLLECTED = 'Odebrany'
     STATE = (
         (COMPLETING, "Completing"),
@@ -60,6 +60,3 @@ class Order(models.Model):
     productList = JSONField()
     isAssigned = models.BooleanField(blank=True, default=True)
     status = models.CharField(max_length=30, choices=STATE, default=COMPLETING)
-
-    def __str__(self):
-        return self.id + " " + self.status
