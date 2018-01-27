@@ -21,29 +21,6 @@
 
                 <div class="row">
 
-{#                    {% for order in orders_list %}#}
-{##}
-{#                        {% if order.status != 'Odebrany' %}#}
-{#                            <form method="post" action="."> {% csrf_token %}#}
-{##}
-{#                                Numer zamówienia:{{ order.id }}<br>#}
-{#                                STATUS: {{ order.status }}<br>#}
-{#                                PRODUKTY:<br>#}
-{#                                {% for product, count in order.productList.items %}#}
-{#                                    {{ product }}: {{ count }}<br>#}
-{#                                {% endfor %}#}
-{#                                        <input type="text" name="orderid" value={{ order.id }} hidden>#}
-{#                                    {% if order.status == "Kompletowany" %}#}
-{#                                        <input type="submit" name="status" value="Skompletowany">#}
-{#                                    {% elif order.status == "Gotowy do odbioru" %}#}
-{#                                        <input type="submit" name="status" value="Odebrany" >#}
-{#                                    {% endif %}#}
-{##}
-{#                            </form>#}
-{#                        {% endif %}#}
-{##}
-{#                    {% endfor %}#}
-
                     <div class="col-md-5">
                         <div class="alert alert-info" role="alert">
                             <h2 style="text-align: center;">W realizacji</h2>
@@ -57,8 +34,8 @@
                                 <form method="post" action="."> {% csrf_token %}
 
                                     <div class="alert alert-info" role="alert">
-                                        <p style="text-align: center; height: 100px;">
-                                            <span class="badge badge-secondary" style="font-size: 90px">{{ order.id }}</span>
+                                        <p style="text-align: center; height: 70px;">
+                                            <span class="badge badge-secondary" style="font-size: 70px">{{ order.id }}</span>
                                         </p>
 
                                         <hr class="my-4">
@@ -106,8 +83,8 @@
 
                                     <div class="alert alert-success" role="alert">
 
-                                        <p style="text-align: center; height: 100px;">
-                                            <span class="badge badge-secondary" style="font-size: 90px">{{ order.id }}</span>
+                                        <p style="text-align: center; height: 60px;">
+                                            <span class="badge badge-secondary" style="font-size: 60px">{{ order.id }}</span>
                                         </p>
 
                                         <hr class="my-4">

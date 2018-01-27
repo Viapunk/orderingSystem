@@ -19,7 +19,7 @@ def show_articles(request):
             return render(request, 'confirmation.html', {"ordered_products": orderedProductList})
         else:
             print(request.POST)
-            if request.POST['Confirmation'] == 'Confirm':
+            if request.POST.get('Confirmation') == 'Confirm':
                 return redirect('orders/', )
             else:
                 request.session.flush()
@@ -56,13 +56,13 @@ def orders_display_customers(request):
         request.session.flush()
 
     orders_list = Order.objects.all()
-    return render(request,'ordersDisplayPanel.html', {'orders_list': orders_list})
+    return render(request,'ordersDisplayCustomer.html', {'orders_list': orders_list})
 
 
 def orders_display(request):
     orders_list = Order.objects.all()
     request.session.flush()
-    return render(request, 'ordersDisplayCustomer.html', {'orders_list': orders_list})
+    return render(request, 'ordersDisplayPanel.html', {'orders_list': orders_list})
 
 def welcome_page(request):
     return render(request, 'hello.html')
