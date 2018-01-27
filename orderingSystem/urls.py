@@ -23,6 +23,6 @@ urlpatterns = [
     path('', order_views.welcome_page),
     path('admin/', admin.site.urls),
     path('client/', order_views.show_articles),
-    path('orders/', order_views.orders_display_customers),
-    path('client/orders/', order_views.orders_display),
+    path('orders/', order_views.orders_display),
+    path('client/orders/', order_views.orders_display_customers),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
