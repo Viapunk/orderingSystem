@@ -1,21 +1,84 @@
-<html>
-<head>
-<meta http-equiv="refresh" content="5; URL=.">
-</head>
-<body>
-{% for order in orders_list %}
+{# Load the tag library #}
+{% load bootstrap3 %}
 
-    {% if order.status != 'Odebrany' %}
-            Numer zamówienia:{{ order.id }}<br>
-            STATUS: {{ order.status }}<br>
-            PRODUKTY:<br>
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
-            {% for product, count in order.productList.items %}
-                {{ product }}: {{ count }}<br>
-            {% endfor %}
+<html style="height: 100%">
 
-    {% endif %}
+    <body style="height: 100%; background-color: #80bdff;">
 
-{% endfor %}
-</body>
+        <div class="container" style="margin-top: 20px">
+
+            <div class="jumbotron">
+
+                <div class="alert alert-dark" role="alert">
+                    <h1 style="text-align: center;">Zamówienia</h1>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="row">
+
+                    <div class="col-md-5">
+                        <div class="alert alert-info" role="alert">
+                            <h2 style="text-align: center;">W realizacji</h2>
+                        </div>
+
+                        <hr class="my-4">
+
+                        {% for order in orders_list %}
+
+                            {% if order.status == 'Kompletowany' %}
+
+                                <div class="alert alert-info" role="alert">
+
+                                    <p style="text-align: center; height: 100px;">
+                                        <span class="badge badge-secondary" style="font-size: 90px">{{ order.id }}</span>
+                                    </p>
+
+                                </div>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="alert alert-success">
+                            <h2 style="text-align: center;">Do odbioru</h2>
+                        </div>
+
+                        <hr class="my-4"><hr class="my-4">
+
+                        {% for order in orders_list %}
+
+                            {% if order.status == 'Gotowy do odbioru' %}
+
+                                <div class="alert alert-success" role="alert">
+                                    <p style="text-align: center; height: 100px;">
+                                        <span class="badge badge-secondary" style="font-size: 90px">{{ order.id }}</span>
+                                    </p>
+                                </div>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
 </html>
