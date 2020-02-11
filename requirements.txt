@@ -12,7 +12,7 @@ cryptography==1.9
 cupshelpers==1.0
 defer==1.0.6
 distro-info==0.17
-Django==2.0.1
+Django==2.2.10
 Django-Accounts==0.1
 django-bootstrap3==9.1.0
 Django-Bootstrap3-Validator==0.3.3
